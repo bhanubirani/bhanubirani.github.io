@@ -1,0 +1,56 @@
+/*
+ *
+ * Author: Bhanu Birani (MB Softwares Pvt. Ltd.)
+ * Date Created: 10th August, 2015
+ * Package: Professional Resume
+ * Document: Resume Stylesheet File
+ *
+ */
+
+*
+{
+    margin:0;
+    padding:0;
+}
+
+.wrapper{
+    border:1px solid;
+    width: 730px;
+    margin:13px 277px;
+    padding:50px 30px 50px 30px;
+}
+.sect{
+	padding-bottom: 40px ;
+}
+.name {
+    position: relative;
+    float: right;
+    line-height: 1;
+    top: -40px;
+}
+.name > p{
+	margin:4px 0 0 0;
+}
+.objective {
+    clear: both;
+}
+
+.type{
+    position: relative;
+    float: right;
+    line-height: 1;
+    top: -88px;
+    left: -5px;
+}
+
+.date{
+   
+    
+}
+.place{
+    position: relative;
+    top: -18px;
+    float: right;
+    left: -88px;
+
+}
