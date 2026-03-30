@@ -3,7 +3,6 @@
 **Director Tech @ Target**  
 Bengaluru, Karnataka, India  
 
-📞 +91-9829885500  
 📧 bhanubirani@gmail.com  
 🔗 https://www.linkedin.com/in/bhanubirani  
 
