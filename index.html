@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bhanu Birani — Director of Technology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d0f0e;
+  --bg2: #141614;
+  --bg3: #1a1d1b;
+  --surface: #1f2320;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --accent: #1D9E75;
+  --accent2: #9FE1CB;
+  --accent-dim: rgba(29,158,117,0.12);
+  --text: #e8ede9;
+  --muted: #7a877c;
+  --muted2: #9faa9f;
+  --red: #e05c4a;
+  --font-display: 'DM Serif Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(13,15,14,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.03em;
+}
+.nav-links { display: flex; gap: 2px; }
+.nav-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-body); font-size: 13px; font-weight: 400;
+  color: var(--muted); padding: 7px 13px; border-radius: 6px;
+  transition: color .15s, background .15s;
+}
+.nav-btn:hover { color: var(--text); background: var(--surface); }
+.nav-btn.active { color: var(--accent); font-weight: 500; }
+
+/* ── PAGES ── */
+.page { display: none; padding: 5rem 2rem 4rem; max-width: 820px; margin: 0 auto; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ── HOME ── */
+.home-eyebrow {
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--accent); letter-spacing: 0.12em;
+  margin-bottom: 1.25rem;
+}
+.home-name {
+  font-family: var(--font-display); font-size: clamp(44px, 7vw, 68px);
+  line-height: 1.05; margin-bottom: 0.5rem;
+  color: var(--text);
+}
+.home-name em { color: var(--accent); font-style: italic; }
+.home-title {
+  font-size: 16px; color: var(--muted2); margin-bottom: 1.75rem;
+  font-weight: 300;
+}
+.home-bio {
+  font-size: 15px; line-height: 1.85; color: var(--muted2);
+  max-width: 560px; margin-bottom: 2.5rem;
+}
+.home-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 4rem; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 13px;
+  font-family: var(--font-body); font-weight: 500; cursor: pointer;
+  border: none; transition: all .15s; text-decoration: none;
+}
+.btn-green { background: var(--accent); color: #fff; }
+.btn-green:hover { background: #18896a; }
+.btn-outline {
+  background: transparent; color: var(--muted2);
+  border: 0.5px solid var(--border2);
+}
+.btn-outline:hover { background: var(--surface); color: var(--text); }
+
+.highlights {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px; margin-bottom: 3rem;
+}
+.hl-card {
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 12px; padding: 1.25rem;
+}
+.hl-num {
+  font-family: var(--font-mono); font-size: 30px; font-weight: 500;
+  color: var(--accent); display: block; margin-bottom: 2px;
+}
+.hl-label { font-size: 12px; color: var(--muted); }
+
+.featured-strip {
+  border-top: 0.5px solid var(--border); padding-top: 2rem;
+}
+.strip-label {
+  font-family: var(--font-mono); font-size: 11px; color: var(--muted);
+  letter-spacing: 0.1em; margin-bottom: 1.25rem;
+}
+.co-logos { display: flex; gap: 12px; flex-wrap: wrap; }
+.co-pill {
+  border: 0.5px solid var(--border2); border-radius: 6px;
+  padding: 6px 14px; font-size: 12px; color: var(--muted2);
+  font-family: var(--font-mono);
+}
+
+/* ── SECTION SHARED ── */
+.section-eyebrow {
+  font-family: var(--font-mono); font-size: 11px; color: var(--accent);
+  letter-spacing: 0.12em; margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--font-display); font-size: 36px; margin-bottom: 2rem;
+}
+.divider { height: 0.5px; background: var(--border); margin: 2.5rem 0; }
+
+/* ── ABOUT ── */
+.about-lead {
+  font-size: 16px; line-height: 1.9; color: var(--muted2); margin-bottom: 2rem;
+}
+.specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
+.spec-tag {
+  font-size: 12px; font-family: var(--font-mono);
+  padding: 5px 12px; border-radius: 6px;
+  background: var(--accent-dim); color: var(--accent2);
+  border: 0.5px solid rgba(29,158,117,0.2);
+}
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.about-block h3 { font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.07em; }
+.pub-list { list-style: none; }
+.pub-list li {
+  padding: 8px 0; border-bottom: 0.5px solid var(--border);
+  font-size: 13px; color: var(--muted2); display: flex; align-items: center; gap: 8px;
+}
+.pub-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.award-list { list-style: none; }
+.award-list li {
+  padding: 8px 0; border-bottom: 0.5px solid var(--border);
+  font-size: 13px; color: var(--muted2); display: flex; align-items: center; gap: 8px;
+}
+.award-list li::before { content: ''; display: inline-block; width: 14px; height: 14px; background: var(--accent-dim); border: 0.5px solid rgba(29,158,117,0.3); border-radius: 3px; flex-shrink: 0; }
+
+/* ── EXPERIENCE ── */
+.exp-timeline { display: flex; flex-direction: column; gap: 0; }
+.exp-company-header {
+  display: flex; align-items: center; gap: 12px;
+  margin: 2rem 0 1rem;
+}
+.company-badge {
+  font-family: var(--font-mono); font-size: 11px;
+  padding: 4px 10px; border-radius: 5px;
+  background: var(--surface); border: 0.5px solid var(--border2);
+  color: var(--muted2);
+}
+.company-tenure { font-size: 12px; color: var(--muted); font-family: var(--font-mono); }
+.exp-item {
+  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+  border-left: 2px solid var(--border2);
+  margin-bottom: 1rem;
+  position: relative;
+}
+.exp-item::before {
+  content: ''; position: absolute; left: -5px; top: 1.5rem;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--border2);
+}
+.exp-item.current::before { border-color: var(--accent); background: var(--accent); }
+.exp-item.current { border-left-color: rgba(29,158,117,0.4); }
+.exp-role {
+  font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 2px;
+}
+.exp-period { font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin-bottom: 8px; }
+.exp-loc { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.exp-desc { font-size: 13px; color: var(--muted2); line-height: 1.75; }
+
+/* ── SKILLS ── */
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.skill-block {
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 12px; padding: 1.25rem;
+}
+.skill-block h3 { font-size: 11px; font-family: var(--font-mono); color: var(--muted); letter-spacing: 0.1em; margin-bottom: 1rem; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tag {
+  font-size: 12px; font-family: var(--font-mono);
+  padding: 4px 10px; border-radius: 5px;
+  background: var(--bg2); color: var(--muted2);
+  border: 0.5px solid var(--border);
+}
+.skill-tag.accent { background: var(--accent-dim); color: var(--accent2); border-color: rgba(29,158,117,0.2); }
+
+/* ── CONTACT ── */
+.contact-lead { font-size: 16px; color: var(--muted2); line-height: 1.85; max-width: 520px; margin-bottom: 2.5rem; }
+.contact-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2.5rem; }
+.contact-card {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 10px; padding: 1rem 1.25rem;
+  text-decoration: none; transition: border-color .15s;
+}
+.contact-card:hover { border-color: var(--accent); }
+.contact-icon {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: var(--accent-dim); border: 0.5px solid rgba(29,158,117,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 12px; color: var(--accent);
+  flex-shrink: 0;
+}
+.contact-platform { font-size: 14px; font-weight: 500; color: var(--text); }
+.contact-handle { font-size: 12px; color: var(--muted); font-family: var(--font-mono); }
+
+.edu-block {
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 10px; padding: 1.25rem;
+}
+.edu-degree { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.edu-uni { font-size: 13px; color: var(--muted2); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .about-grid, .skills-grid { grid-template-columns: 1fr; }
+  .home-name { font-size: 40px; }
+  nav { padding: 0 1rem; }
+  .page { padding: 4.5rem 1.25rem 3rem; }
+  .nav-btn { padding: 7px 9px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">bhanubirani.in</span>
+  <div class="nav-links">
+    <button class="nav-btn active" onclick="show('home',this)">Home</button>
+    <button class="nav-btn" onclick="show('about',this)">About</button>
+    <button class="nav-btn" onclick="show('experience',this)">Experience</button>
+    <button class="nav-btn" onclick="show('skills',this)">Skills</button>
+    <button class="nav-btn" onclick="show('contact',this)">Contact</button>
+  </div>
+</nav>
+
+<!-- ══════════ HOME ══════════ -->
+<section id="home" class="page active">
+  <p class="home-eyebrow">DIRECTOR OF TECHNOLOGY · TARGET</p>
+  <h1 class="home-name">Bhanu<br /><em>Birani</em></h1>
+  <p class="home-title">Engineering leader · Bengaluru, India</p>
+  <p class="home-bio">
+    I build and scale high-performing product engineering teams — from zero to millions of users. 
+    I bring a rare mix of strategic vision and hands-on execution, having led teams across loyalty, 
+    authentication, payments, and mobile at enterprise scale.
+  </p>
+  <div class="home-actions">
+    <button class="btn btn-green" onclick="show('experience',document.querySelectorAll('.nav-btn')[2])">View experience</button>
+    <button class="btn btn-outline" onclick="show('contact',document.querySelectorAll('.nav-btn')[4])">Get in touch</button>
+  </div>
+
+  <div class="highlights">
+    <div class="hl-card">
+      <span class="hl-num">13+</span>
+      <span class="hl-label">Years in tech</span>
+    </div>
+    <div class="hl-card">
+      <span class="hl-num">30+</span>
+      <span class="hl-label">Engineers led</span>
+    </div>
+    <div class="hl-card">
+      <span class="hl-num">$200M+</span>
+      <span class="hl-label">Business lift delivered</span>
+    </div>
+    <div class="hl-card">
+      <span class="hl-num">3</span>
+      <span class="hl-label">Books published</span>
+    </div>
+  </div>
+
+  <div class="featured-strip">
+    <p class="strip-label">COMPANIES</p>
+    <div class="co-logos">
+      <span class="co-pill">Target</span>
+      <span class="co-pill">Visa</span>
+      <span class="co-pill">Avaya</span>
+      <span class="co-pill">CX100</span>
+      <span class="co-pill">Packt</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section id="about" class="page">
+  <p class="section-eyebrow">ABOUT ME</p>
+  <h2 class="section-title">Builder. Leader. Technologist.</h2>
+
+  <p class="about-lead">
+    Experienced technology leader with a proven track record of building product and engineering teams from the ground up. 
+    I drive cross-functional teams with a boundaryless mindset, enhance operational efficiency, and foster cultures of collaboration and innovation.
+  </p>
+  <p class="about-lead">
+    I bring a unique blend of strategic thinking and execution excellence — shaping long-term product vision while delivering tangible results at speed. 
+    I thrive in both startup and corporate settings, knowing how to build a product in a month and scale it over time to serve millions of users.
+  </p>
+
+  <div class="divider"></div>
+  <p style="font-size:13px;color:var(--muted);font-family:var(--font-mono);letter-spacing:0.08em;margin-bottom:1rem;">SPECIALTIES</p>
+  <div class="specialties">
+    <span class="spec-tag">High-performance team building</span>
+    <span class="spec-tag">Cross-functional leadership</span>
+    <span class="spec-tag">Technology partnerships</span>
+    <span class="spec-tag">Engineering at scale</span>
+    <span class="spec-tag">Product strategy</span>
+    <span class="spec-tag">Frontend technologies</span>
+    <span class="spec-tag">CI/CD & DevOps</span>
+    <span class="spec-tag">Startup to enterprise</span>
+  </div>
+
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-block">
+      <h3>Publications</h3>
+      <ul class="pub-list">
+        <li>iOS Forensics Cookbook</li>
+        <li>Getting Started with Flurry Analytics</li>
+        <li>iOS Game Programming Cookbook</li>
+      </ul>
+    </div>
+    <div class="about-block">
+      <h3>Honors &amp; Awards</h3>
+      <ul class="award-list">
+        <li>Won Avaya Hackathon 2016</li>
+        <li>Significant Contribution Award</li>
+        <li>SPOT Award (Special Recognition)</li>
+        <li>B.Tech with Honors</li>
+        <li>Star Award</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="about-block">
+    <h3>Certifications</h3>
+    <ul class="pub-list">
+      <li>SVPG Product Masterclass — Course Completed</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ EXPERIENCE ══════════ -->
+<section id="experience" class="page">
+  <p class="section-eyebrow">CAREER</p>
+  <h2 class="section-title">Experience</h2>
+
+  <div class="exp-timeline">
+
+    <!-- Target -->
+    <div class="exp-company-header">
+      <span class="company-badge">Target</span>
+      <span class="company-tenure">4 years · Bengaluru</span>
+    </div>
+
+    <div class="exp-item current">
+      <div class="exp-role">Director of Technology — Digital</div>
+      <div class="exp-period">January 2026 – Present</div>
+      <div class="exp-desc">Leading high-performing leaders and teams driving Loyalty, Lists, Registries, Gifting, Accounts, Profile, Authentication experiences, and Privacy within the Digital portfolio.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Director of Engineering — Digital</div>
+      <div class="exp-period">April 2024 – December 2025</div>
+      <div class="exp-desc">Led multiple full-stack teams across flagship applications and the Target.com ecosystem. Provided engineering leadership for the "Digital – Know Me, Reward Me" portfolio including Target Circle, Accounts, Profile, Login and Enrollment (re-architected authentication experience delivering <strong style="color:var(--accent)">over $200M in business lift</strong>), and Privacy.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Senior Engineering Manager — Digital (Engage Portfolio)</div>
+      <div class="exp-period">April 2022 – March 2024</div>
+      <div class="exp-desc">Built and scaled high-performing engineering teams from the ground up to 30+ FTEs. Established strong second-line leadership. Led flagship teams across Target Circle, Deals, Gift Registry, Basket Building, and Platform. Played a key role in the Target Circle rebranding initiative — one of the major enterprise-wide initiatives.</div>
+    </div>
+
+    <div class="exp-company-header" style="margin-top:1rem;">
+      <span class="company-badge">Visa</span>
+      <span class="company-tenure">5 years · Bengaluru</span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Engineering Manager</div>
+      <div class="exp-period">May 2021 – May 2022</div>
+      <div class="exp-desc">Built and led engineering teams of full-time and contingent staff. Drove product delivery while leading process improvements. Led teams developing Visa In-App Provisioning SDKs and the Visa Digital Commerce white-label application.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Staff Software Engineer</div>
+      <div class="exp-period">June 2017 – April 2021</div>
+      <div class="exp-desc">Led a team of engineers to architect, develop, deploy, and maintain Visa's mobile products and SDKs. Built automation pipelines to streamline release and distribution. Worked on mVisa SDK and other white-label mobile solutions.</div>
+    </div>
+
+    <div class="exp-company-header" style="margin-top:1rem;">
+      <span class="company-badge">Target</span>
+      <span class="company-tenure">Bengaluru</span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Senior Engineer</div>
+      <div class="exp-period">October 2016 – June 2017</div>
+      <div class="exp-desc">Designed and developed Target's mobility products supporting Registry and Wishlist. Implemented CI/CD pipelines and worked on payments systems building scalable Java-based web applications and backend modules for payment gateway integrations.</div>
+    </div>
+
+    <div class="exp-company-header" style="margin-top:1rem;">
+      <span class="company-badge">Avaya Inc.</span>
+      <span class="company-tenure">Bengaluru</span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Senior Software Engineer (R&amp;D)</div>
+      <div class="exp-period">July 2015 – September 2016</div>
+      <div class="exp-desc">Developed SIP and VoIP-based telecommunication applications for iOS and macOS. Integrated IoT stacks with telecom products. Presented R&amp;D solutions at global partner conferences.</div>
+    </div>
+
+    <div class="exp-company-header" style="margin-top:1rem;">
+      <span class="company-badge">CX100</span>
+      <span class="company-tenure">Bengaluru</span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Senior Software Engineer</div>
+      <div class="exp-period">August 2012 – June 2015</div>
+      <div class="exp-desc">Worked on ML-based email intelligence and delivered multiple mobile products. Built iBeacon, content-driven and radio-based applications. Developed streaming platforms with 255+ radio stations. Created interactive iPad novels using Cocos2d/Box2D. Implemented image processing using ImageMagick and OpenCV.</div>
+    </div>
+
+    <div class="exp-company-header" style="margin-top:1rem;">
+      <span class="company-badge">Packt</span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Author</div>
+      <div class="exp-period">June 2013 – November 2016</div>
+      <div class="exp-desc">Published three technical books on iOS development, analytics, and forensics.</div>
+    </div>
+
+    <div class="exp-company-header" style="margin-top:1rem;">
+      <span class="company-badge">PPS Ltd</span>
+      <span class="company-tenure">Jodhpur</span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Application Developer</div>
+      <div class="exp-period">2011 – 2012</div>
+      <div class="exp-desc">Built reusable AI components and mobile games using Cocos2d and Box2d.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ SKILLS ══════════ -->
+<section id="skills" class="page">
+  <p class="section-eyebrow">EXPERTISE</p>
+  <h2 class="section-title">Skills</h2>
+
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h3>Leadership</h3>
+      <div class="skill-tags">
+        <span class="skill-tag accent">Technical Leadership</span>
+        <span class="skill-tag accent">Team Building</span>
+        <span class="skill-tag accent">Engineering Management</span>
+        <span class="skill-tag accent">Cross-functional</span>
+        <span class="skill-tag accent">Mentorship</span>
+        <span class="skill-tag accent">Strategic Planning</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h3>Product & Delivery</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Product Strategy</span>
+        <span class="skill-tag">Agile / Scrum</span>
+        <span class="skill-tag">CI/CD</span>
+        <span class="skill-tag">DevOps</span>
+        <span class="skill-tag">Release Automation</span>
+        <span class="skill-tag">Project Management</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h3>Frontend & Mobile</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">iOS (Swift / ObjC)</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Cocos2d</span>
+        <span class="skill-tag">Mobile SDKs</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h3>Backend & Platforms</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">SIP / VoIP</span>
+        <span class="skill-tag">Payment Gateways</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">Image Processing</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h3>Domains</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Loyalty & Rewards</span>
+        <span class="skill-tag">Authentication</span>
+        <span class="skill-tag">Payments</span>
+        <span class="skill-tag">Fintech</span>
+        <span class="skill-tag">eCommerce</span>
+        <span class="skill-tag">Telecom</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h3>Soft skills</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Communication</span>
+        <span class="skill-tag">Stakeholder Management</span>
+        <span class="skill-tag">Executive Presence</span>
+        <span class="skill-tag">Thought Leadership</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section id="contact" class="page">
+  <p class="section-eyebrow">CONTACT</p>
+  <h2 class="section-title">Let's connect.</h2>
+  <p class="contact-lead">
+    Open to conversations around technology leadership, engineering culture, and product strategy. 
+    Also happy to chat about mentorship, speaking opportunities, or book topics.
+  </p>
+
+  <div class="contact-cards">
+    <a href="mailto:bhanubirani@gmail.com" class="contact-card">
+      <div class="contact-icon">@</div>
+      <div>
+        <div class="contact-platform">Email</div>
+        <div class="contact-handle">bhanubirani@gmail.com</div>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/bhanubirani" target="_blank" rel="noopener" class="contact-card">
+      <div class="contact-icon">in</div>
+      <div>
+        <div class="contact-platform">LinkedIn</div>
+        <div class="contact-handle">linkedin.com/in/bhanubirani</div>
+      </div>
+    </a>
+    <a href="https://bhanubirani.in" target="_blank" rel="noopener" class="contact-card">
+      <div class="contact-icon">www</div>
+      <div>
+        <div class="contact-platform">Website</div>
+        <div class="contact-handle">bhanubirani.in</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="divider"></div>
+  <p style="font-size:13px;color:var(--muted);font-family:var(--font-mono);letter-spacing:0.08em;margin-bottom:1rem;">EDUCATION</p>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="edu-block">
+      <div class="edu-degree">B.Tech, Computer Science &amp; Engineering</div>
+      <div class="edu-uni">Rajasthan Technical University</div>
+    </div>
+    <div class="edu-block">
+      <div class="edu-degree">HSC — Physics, Chemistry, Maths with Computers</div>
+      <div class="edu-uni">Central Academy Schools</div>
+    </div>
+  </div>
+</section>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
